@@ -49,4 +49,6 @@ A Python 3 port of the Rivivc R package for IVIVC linear level A by Aleksander M
 
     plt.show()
 
+
+![The output should look like this](https://github.com/scheckley/pyvivc/blob/master/example_plot.png?raw=true)
 ---
