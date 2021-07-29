@@ -12,9 +12,21 @@ A Python 3 port of the Rivivc R package for IVIVC linear level A by Aleksander M
 
 ## Pyvivc example
 
-    impulse = pd.read_csv('/data/impulse.csv')
-    response = pd.read_csv('/data/resp.csv')
-    inp = pd.read_csv('/data/input.csv')
+    from pyvivc import *
+    from scipy.interpolate import pchip_interpolate as pchip
+    from scipy.optimize import minimize
+    import pandas as pd
+    import numpy as np
+    import matplotlib.pyplot as plt
+    import matplotlib
+    import seaborn as sns
+    sns.set()
+    matplotlib.use('TkAgg') # for plotting to the screen when executing the code.
+
+
+    impulse = pd.read_csv('data/impulse.csv')
+    response = pd.read_csv('data/resp.csv')
+    inp = pd.read_csv('data/input.csv')
 
     out = pyivivc(inp,impulse,response,explicit_interpolation=10,implicit_interpolation=5)
 
