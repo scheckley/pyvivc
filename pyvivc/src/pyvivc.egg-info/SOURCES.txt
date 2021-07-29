@@ -1,8 +1,0 @@
-LICENSE.txt
-setup.py
-pyvivc/src/pyvivc.py
-pyvivc/src/pyvivc.egg-info/PKG-INFO
-pyvivc/src/pyvivc.egg-info/SOURCES.txt
-pyvivc/src/pyvivc.egg-info/dependency_links.txt
-pyvivc/src/pyvivc.egg-info/requires.txt
-pyvivc/src/pyvivc.egg-info/top_level.txt
