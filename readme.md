@@ -21,7 +21,7 @@ A Python 3 port of the Rivivc R package for IVIVC linear level A by Aleksander M
     import matplotlib
     import seaborn as sns
     sns.set()
-    matplotlib.use('TkAgg') # for plotting to the screen when executing the code.
+    matplotlib.use('TkAgg')
 
 
     impulse = pd.read_csv('data/impulse.csv')
