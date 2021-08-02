@@ -29,12 +29,12 @@ def NumConv(impulse, input, conv_timescale=None, explicit_interpolation=1000):
         if len(conv_timescale) > 2:
             time_orig = conv_timescale
         else:
-            time_orig = np.arange(conv_timescale[0], conv_timescale[1], (conv_timescale[1]-conv_timescale[0])/accuracy)
+            time_orig = np.arange(conv_timescale.iloc[0], conv_timescale.iloc[1], (conv_timescale.iloc[1]-conv_timescale.iloc[0])/accuracy)
 
     time_imp_orig = impulse_orig['time']
     lk_row_orig = len(time_orig)-1
 
-    time = np.arange(time_orig[0], time_orig[lk_row_orig], (time_orig[lk_row_orig]-time_orig[0])/accuracy)
+    time = np.arange(time_orig.iloc[0], time_orig.iloc[lk_row_orig], (time_orig.iloc[lk_row_orig]-time_orig.iloc[0])/accuracy)
 
     lk_row1 = len(time)-1
 
