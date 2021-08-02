@@ -5,7 +5,7 @@
 
 from scipy.interpolate import pchip_interpolate as pchip
 from scipy import stats
-from scipy.optimize import minimize
+from scipy.optimize import minimize, dual_annealing
 import pandas as pd
 import numpy as np
 
@@ -82,7 +82,7 @@ def NumConv(impulse, input, conv_timescale=None, explicit_interpolation=1000):
 # Numerical deconvolution     #
 ###############################
 
-def NumDeconv(impulse, response, dose_iv=None, dose_po=None, deconv_timescale=None, explicit_interpolation=10, implicit_interpolation=10, maxit_optim=200):
+def NumDeconv(impulse, response, dose_iv=None, dose_po=None, deconv_timescale=None, explicit_interpolation=10, implicit_interpolation=10, maxit_optim=200, global_optim=0):
 
     iv_multiplication_factor = 1
 
@@ -127,7 +127,7 @@ def NumDeconv(impulse, response, dose_iv=None, dose_po=None, deconv_timescale=No
     lk_row_2 = len(time_2)
     
     #################################################################
-    
+
     def error_function(input_data):
         def MSE(vect1, vect2):
             result = 0
@@ -136,8 +136,7 @@ def NumDeconv(impulse, response, dose_iv=None, dose_po=None, deconv_timescale=No
             for i in range(0,rows_no-1):
                 result = result + np.square(np.subtract(vect1[i], vect2[i])).mean() # MSE
                 #result = result + np.sum((vect1[i] - vect2[i])**2) # LSE
-            
-        
+
             return result
         
         def PKconvolution(input, impulse, lk_row):
@@ -189,7 +188,11 @@ def NumDeconv(impulse, response, dose_iv=None, dose_po=None, deconv_timescale=No
     print('running optimization...')
 
     bounds = list(zip(np.zeros(len(input_discovered)), np.ones(len(input_discovered)*100)))
-    fit = minimize(fun=error_function, x0=input_discovered, bounds=bounds, method="L-BFGS-B", options={'maxiter':maxit_optim})
+    if global_optim==1:
+        fit = dual_annealing(func=error_function, bounds=bounds, seed=6174)
+    else:
+        fit = minimize(fun=error_function, x0=input_discovered, bounds=bounds, method="L-BFGS-B", options={'maxiter':maxit_optim})
+    
 
     input_discovered = fit.x
 
