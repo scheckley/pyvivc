@@ -257,11 +257,11 @@ def pyivivc(known_dat, impulse, second_profile, dose_iv=None, dose_po=None, expl
     known_time = known_dat['time']
 
     wynik = NumDeconv(impulse, second_profile, dose_iv=dose_iv, dose_po=dose_po, deconv_timescale=known_time, explicit_interpolation=explicit_interpolation, implicit_interpolation=implicit_interpolation, maxit_optim=maxit_optim)
-    y = wynik.iloc[0]['par']
+    y = wynik[0]['par']
 
     regr = stats.linregress(x[0:len(x)-1],y)
 
     out_regression = regr
-    out_numeric = wynik.iloc[0]
+    out_numeric = wynik[0]
 
     return [out_regression, out_numeric]
