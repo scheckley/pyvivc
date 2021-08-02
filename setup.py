@@ -5,7 +5,7 @@ with open('README.md', 'r') as fh:
 
 setuptools.setup(
     name='pyvivc',                     
-    version='1.01',                       
+    version='1.02',                       
     author='Stephen Checkley',                    
     author_email='scheckley@gmail.com',
     url='https://github.com/scheckley/pyvivc',
