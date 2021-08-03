@@ -115,6 +115,7 @@ def NumDeconv(impulse, response, dose_iv=None, dose_po=None, deconv_timescale=No
     lk_row_orig = len(time_orig)-1
 
     time = np.arange(time_orig.iloc[0], time_orig.iloc[lk_row_orig], (time_orig.iloc[lk_row_orig]-time_orig.iloc[0])/accuracy)
+    
     lk_row1 = len(time)-1
     
     impulse_interp = pchip(time_imp_orig, impulse_orig['C'], time)
