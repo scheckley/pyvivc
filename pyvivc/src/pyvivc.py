@@ -82,7 +82,7 @@ def NumConv(impulse, input, conv_timescale=None, explicit_interpolation=1000):
 # Numerical deconvolution     #
 ###############################
 
-def NumDeconv(impulse, response, dose_iv=None, dose_po=None, deconv_timescale=None, explicit_interpolation=10, implicit_interpolation=10, maxit_optim=200, global_optim=0):
+def NumDeconv(impulse, response, dose_iv=None, dose_po=None, deconv_timescale=None, explicit_interpolation=15, implicit_interpolation=10, maxit_optim=200, global_optim=0):
 
     iv_multiplication_factor = 1
 
