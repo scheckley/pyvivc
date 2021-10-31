@@ -10,6 +10,20 @@ A Python 3 port of the Rivivc R package for IVIVC linear level A by Aleksander M
 
 ---
 
+## Installation
+
+Clone the repository and install with pip:
+
+```
+pip install .
+```
+
+or install with pip from the TestPyPi repository:
+
+```
+pip install -i https://test.pypi.org/simple/ pyvivc
+```
+
 ## Pyvivc example
 
     from pyvivc import *
