@@ -1,11 +1,11 @@
 import setuptools
 
-with open('README.md', 'r') as fh:
+with open('readme.md', 'r') as fh:
     long_description = fh.read()
 
 setuptools.setup(
     name='pyvivc',                     
-    version='1.1',                       
+    version='1.3',                       
     author='Stephen Checkley',                    
     author_email='scheckley@gmail.com',
     url='https://github.com/scheckley/pyvivc',
@@ -19,7 +19,7 @@ setuptools.setup(
         'Operating System :: OS Independent',
     ],                                      
     python_requires='>=3.9',      
-    py_modules=['pyvivc'],            
+    py_modules=['pyvivc','newrange'],            
     package_dir={'':'pyvivc/src'},   
     install_requires=['scipy', 'pandas', 'numpy'],
     project_urls={
