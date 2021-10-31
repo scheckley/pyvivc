@@ -1,7 +1,7 @@
 # Pyvivc
 
-## Version 1.0
-Stephen Checkley, July 2021.
+## Version 1.3
+Stephen Checkley, October 2021.
 
 ---
 
