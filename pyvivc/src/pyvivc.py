@@ -1,13 +1,14 @@
 # Python port of Rivivc numerical convolution by Aleksander Mendyk, Sebastian Polak 
 # https://cran.r-project.org/web/packages/Rivivc/index.html
-# Version 1.0
-# Stephen Checkley, July 2021
+# Version 1.1
+# Stephen Checkley, September 2021
 
 from scipy.interpolate import pchip_interpolate as pchip
 from scipy import stats
 from scipy.optimize import minimize, dual_annealing
 import pandas as pd
 import numpy as np
+from newrange import *
 
 ###############################
 # Numerical convolution       #
@@ -29,12 +30,12 @@ def NumConv(impulse, input, conv_timescale=None, explicit_interpolation=1000):
         if len(conv_timescale) > 2:
             time_orig = conv_timescale
         else:
-            time_orig = np.arange(conv_timescale.iloc[0], conv_timescale.iloc[1], (conv_timescale.iloc[1]-conv_timescale.iloc[0])/accuracy)
+            time_orig = crange(conv_timescale.iloc[0], conv_timescale.iloc[1], (conv_timescale.iloc[1]-conv_timescale.iloc[0])/accuracy)
 
     time_imp_orig = impulse_orig['time']
     lk_row_orig = len(time_orig)-1
 
-    time = np.arange(time_orig.iloc[0], time_orig.iloc[lk_row_orig], (time_orig.iloc[lk_row_orig]-time_orig.iloc[0])/accuracy)
+    time = crange(time_orig.iloc[0], time_orig.iloc[lk_row_orig], (time_orig.iloc[lk_row_orig]-time_orig.iloc[0])/accuracy)
 
     lk_row1 = len(time)-1
 
@@ -110,18 +111,18 @@ def NumDeconv(impulse, response, dose_iv=None, dose_po=None, deconv_timescale=No
         if len(deconv_timescale) > 2:
             time_orig = deconv_timescale
         else:
-            time_orig = np.arange(deconv_timescale.iloc[0], deconv_timescale.iloc[1], (deconv_timescale.iloc[1]-deconv_timescale.iloc[0])/accuracy)
+            time_orig = crange(deconv_timescale.iloc[0], deconv_timescale.iloc[1], (deconv_timescale.iloc[1]-deconv_timescale.iloc[0])/accuracy)
 
     lk_row_orig = len(time_orig)-1
 
-    time = np.arange(time_orig.iloc[0], time_orig.iloc[lk_row_orig], (time_orig.iloc[lk_row_orig]-time_orig.iloc[0])/accuracy)
+    time = crange(time_orig.iloc[0], time_orig.iloc[lk_row_orig], (time_orig.iloc[lk_row_orig]-time_orig.iloc[0])/accuracy)
     
     lk_row1 = len(time)-1
     
     impulse_interp = pchip(time_imp_orig, impulse_orig['C'], time)
     resp_interp = pchip(time_resp_orig, resp_orig['C'], time)
 
-    time_2 = np.arange(time_orig.iloc[0], time_orig.iloc[lk_row_orig], ((time_orig.iloc[lk_row_orig] - time_orig.iloc[0])/(multipl_2*accuracy)))
+    time_2 = crange(time_orig.iloc[0], time_orig.iloc[lk_row_orig], ((time_orig.iloc[lk_row_orig] - time_orig.iloc[0])/(multipl_2*accuracy)))
 
     resp_interp_2 = pchip(time_resp_orig, resp_orig['C'], time_2)
     impulse_interp_2 = pchip(time_imp_orig, impulse_orig['C'], time_2)
