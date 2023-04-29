@@ -18,10 +18,10 @@ Clone the repository and install with pip:
 pip install .
 ```
 
-or install with pip from the TestPyPi repository:
+or install with pip from the PyPi repository:
 
 ```
-pip install -i https://test.pypi.org/simple/ pyvivc
+pip install pyvivc
 ```
 
 ## Pyvivc example
